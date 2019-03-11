@@ -1,0 +1,13 @@
+{
+  "name": "node-js-action-template",
+  "version": "0.0.1",
+  "description": "Template for new GitHub Actions running NodeJS",
+  "dependencies": {
+    "loglevel": "^1.6.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
