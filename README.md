@@ -11,7 +11,7 @@ All your code is under the `src` folder:
 After the project is setup you can just run it as: 
 
 ```bash
-GITHUB_EVENT_PATH="sample-payload.json" SONG="<SONG_SEARCH_QUERY>" TOKEN="<Spotify OAUTH token"> DEVICE="" node action.js
+GITHUB_EVENT_PATH="sample-payload.json" SONG="<SONG_SEARCH_QUERY>" TOKEN="<Spotify OAUTH token>" node action.js
 ```
 
 You can grab your OAUTH token via the Spotify API docs: 
