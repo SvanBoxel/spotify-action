@@ -1,7 +1,7 @@
 {
-  "name": "node-js-action-template",
+  "name": "spotify-action",
   "version": "0.0.1",
-  "description": "Template for new GitHub Actions running NodeJS",
+  "description": "Play a Spotify song from a GitHub action",
   "dependencies": {
     "loglevel": "^1.6.1",
     "request": "^2.88.0",

@@ -4,10 +4,9 @@ COPY ./src /action
 
 ENTRYPOINT ["/action/entrypoint.sh"]
 
-# LABEL "com.github.actions.name"="NodeJS Action Template"
-# LABEL "com.github.actions.description"="Template for new GitHub Actions running NodeJS"
-# LABEL "com.github.actions.icon"="book-open"
-# LABEL "com.github.actions.color"="green"
-# LABEL "repository"="https://github.com/bitoiu/node-js-action-template"
-# LABEL "homepage"="https://github.com/bitoiu/node-js-action-template"
-# LABEL "maintainer"="https://github.com/bitoiu"
+LABEL "com.github.actions.name"="Spotify Action"
+LABEL "com.github.actions.description"="Play Spotify songs from a GitHub Action"
+LABEL "com.github.actions.color"="green"
+LABEL "repository"="https://github.com/SvanBoxel/spotify-action"
+LABEL "homepage"="https://github.com/SvanBoxel/spotify-action"
+LABEL "maintainer"="https://github.com/SvanBoxel"

@@ -1,10 +1,8 @@
-## node-js-action-template
+## spotify-action
 
-This repository offers a template to build a [GitHub Action](https://developer.github.com/actions/) on NodeJS without really having to understand the complexities of containers - although I recommend you do at some point. My hope is that by letting you feel the power of Actions quicker and hassle free, you'll be more motivated to develop new ones and learn the rest of the technical context.           
- 
- 🚧 GitHub Actions is still on Private Beta, [sign-up for access](https://github.com/features/actions) 🚧
+This GitHub action will (yeah, not yet) enable you to play your favorite Spotify on a device triggered by an event in GitHub
 
-## Developing your Action locally
+## Developing this Action locally
 
 All your code is under the `src` folder:
  1. `cd src`
@@ -13,11 +11,15 @@ All your code is under the `src` folder:
 After the project is setup you can just run it as: 
 
 ```bash
-GITHUB_EVENT_PATH="sample-payload.json" node action.js
+GITHUB_EVENT_PATH="sample-payload.json" SONG="<SONG_SEARCH_QUERY>" TOKEN="<Spotify OAUTH token"> DEVICE="" node action.js
 ```
 
-`GITHUB_EVENT_PATH` is an [environment variable in Actions](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables) where the event payload is stored for analysis during execution. For local testing there's a file `src/sample-payload.json` which stores the sample payload of a `push` event. If you're planning on creating a workflow that triggers on another type of event, you can just [fetch a sample payload](https://developer.github.com/v3/activity/events/types) and replace the contents of that file.  
+You can grab your OAUTH token via the Spotify API docs: 
+  1. Visit https://developer.spotify.com/console/get-search-item/
+  2. Scroll down
+  3. Click `get token`
 
+> Todo: These tokens expire and should be refreshed https://developer.spotify.com/documentation/general/guides/authorization-guide/
  
 ## Testing the Action on GitHub.com
 
@@ -25,14 +27,3 @@ First of all you'll need create a new repository on GitHub.com and push the loca
 
 After that just follow the documentation on how to create a new workflow and import your action: https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/.
 
-## Design considerations
-
-If you've been working with NodeJS you'll surely know since you've started reading this line there are 12 new frameworks and 6 new HTTP libraries to consume an API. While suggestions will be welcome and if valid taken into the project, I'm trying to keep things simple as far as default imports go, but I know opinions will differ wildly on this. Currently the default dependencies on `package.json` are:
- - [standard](https://github.com/standard/standard)  
- - [loglevel](https://github.com/pimterry/loglevel)
-
-## Pull Requests and Issues are Welcome
-
-If you find something that can be improved, or best practices that could be adopted in anything regarding NodeJS, Containers or GitHub Actions themselves, please send a pull request.
-
-:octocat::heart: 
