@@ -55,8 +55,7 @@ class SpotifyAction {
 
       request(options, (err, res, body) => {
         if (err) {
-          log.error('search request error: ', err)
-          reject()
+          reject(new Error(`search request error: ${err}`))
         }
 
         var headers = res.headers
@@ -91,8 +90,7 @@ class SpotifyAction {
 
       request(options, (err, res, body) => {
         if (err) {
-          log.error('play request error: ', err)
-          reject()
+          reject(new Error(`play request error: ${err}`))
         }
 
         var headers = res.headers
