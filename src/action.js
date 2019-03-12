@@ -16,34 +16,34 @@ log.setLevel(process.env.LOG_LEVEL || 'info')
 // Print out the event data
 log.trace(`Event data: ${JSON.stringify(getEventData())}`)
 
-const request = require("request");
+const request = require('request')
 
 class SpotifyAction {
-  constructor({ token }) {
+  constructor ({ token }) {
     this.endpoints = {
       api_uri: 'https://api.spotify.com/v1',
-      searchSong: '/search', 
+      searchSong: '/search',
       playSong: '/me/player/play'
     }
-    
-    this.token = token;
+
+    this.token = token
   }
-  
-  get headers() {
+
+  get headers () {
     return {
       'Authorization': `Bearer ${this.token}`,
       'Accept': 'application/json',
-      'Content-Type': 'application/json' 
+      'Content-Type': 'application/json'
     }
   }
 
-  getEndpoint(method) {
+  getEndpoint (method) {
     return `${this.endpoints.api_uri}${this.endpoints[method]}`
   }
-  
-  searchSong(query) {
+
+  searchSong (query) {
     if (!query) {
-      throw 'invalid search query';
+      throw new Error('invalid search query')
     }
 
     return new Promise((resolve, reject) => {
@@ -51,14 +51,14 @@ class SpotifyAction {
         url: `${this.getEndpoint('searchSong')}?q=${query}%20&type=track&limit=1`,
         method: 'GET',
         headers: this.headers
-      };
-      
+      }
+
       request(options, (err, res, body) => {
         if (err) {
           log.error('search request error: ', err)
-          reject();
+          reject()
         }
-        
+
         var headers = res.headers
         var statusCode = res.statusCode
         log.debug(`---- debug play request ----`)
@@ -66,17 +66,17 @@ class SpotifyAction {
         log.debug('statusCode', statusCode)
         log.debug('body', body)
         log.debug(`---- end debug play request ----`)
-        
+
         const song = JSON.parse(body).tracks.items[0].uri
-        log.info(`found ${song}`);
-        resolve(song);
+        log.info(`found ${song}`)
+        resolve(song)
       })
-    });
+    })
   }
-  
-  playSong(song) {
+
+  playSong (song) {
     if (!song) {
-      throw 'invalid song';
+      throw new Error('invalid song')
     }
 
     return new Promise((resolve, reject) => {
@@ -85,16 +85,16 @@ class SpotifyAction {
         method: 'PUT',
         headers: this.headers,
         json: {
-          "uris": [song]
+          'uris': [song]
         }
-      };
-      
+      }
+
       request(options, (err, res, body) => {
         if (err) {
           log.error('play request error: ', err)
-          reject();
+          reject()
         }
-        
+
         var headers = res.headers
         var statusCode = res.statusCode
         log.debug(`---- debug play request ----`)
@@ -102,19 +102,17 @@ class SpotifyAction {
         log.debug('statusCode', statusCode)
         log.debug('body', body)
         log.debug(`---- end debug play request ----`)
-        
-        log.info(`Playing ${song}`);
-        resolve();
+
+        log.info(`Playing ${song}`)
+        resolve()
       })
     })
   }
 };
 
-const token = process.env.TOKEN;
-const search = process.env.SONG;
+const token = process.env.TOKEN
+const search = process.env.SONG
 
-const Spotify = new SpotifyAction({ token });
+const Spotify = new SpotifyAction({ token })
 
-Spotify.searchSong(search).then(song => Spotify.playSong(song));
-
-
+Spotify.searchSong(search).then(song => Spotify.playSong(song))
