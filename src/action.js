@@ -46,7 +46,11 @@ class SpotifyAction {
     if (!query) {
       throw new Error('invalid search query')
     }
-
+    
+    log.debug(`---- debug query variable ----`)
+    log.debug('query', query)
+    log.debug(`---- end debug query variable ----`)
+    
     return new Promise((resolve, reject) => {
       const options = {
         url: `${this.getEndpoint('searchSong')}?q=${query}%20&type=track&limit=1`,
