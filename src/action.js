@@ -1,3 +1,6 @@
+const core = require('@actions/core');
+const github = require('@actions/github');
+
 // Requires and variable definition
 const log = require('loglevel')
 const fs = require('fs')
@@ -19,7 +22,7 @@ log.trace(`Event data: ${JSON.stringify(getEventData())}`)
 const request = require('request')
 
 class SpotifyAction {
-  constructor ({ token, device_id }) {
+  constructor ({ token }) {
     this.endpoints = {
       api_uri: 'https://api.spotify.com/v1',
       searchSong: '/search',
@@ -72,6 +75,7 @@ class SpotifyAction {
         log.debug(`---- end debug play request ----`)
 
         const song = JSON.parse(body).tracks.items[0].uri
+
         log.info(`found ${song}`)
         resolve(song)
       })
@@ -114,8 +118,8 @@ class SpotifyAction {
 };
 
 const token = process.env.TOKEN
-const search = process.env.SONG
-const device_id = process.env.DEVICE_ID
+const search = core.getInput('song');
+const device_id = core.getInput('device_id');
 
 const Spotify = new SpotifyAction({ token, device_id })
 
