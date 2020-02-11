@@ -1,4 +1,4 @@
-name: 'Spotify'
+name: 'Spotify - Play'
 description: 'Play your favorite Spotify song from within GitHub'
 author: 'Sebass van Boxel'
 inputs:
