@@ -1,3 +1,6 @@
+name: 'Spotify'
+description: 'Play your favorite Spotify song from within GitHub'
+author: 'Sebass van Boxel'
 inputs:
   song:
     description: 'Song to search for'
