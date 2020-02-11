@@ -9,3 +9,5 @@ inputs:
   device_id:
     device_id: 'Spotify device_id (https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/)'
     required: true
+using: 'docker'
+image: 'Dockerfile'
