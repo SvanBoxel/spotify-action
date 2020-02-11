@@ -14,7 +14,7 @@ let getEventData = function () {
 }
 
 // // Set default log level or read the environment setting
-log.setLevel(process.env.LOG_LEVEL || 'info')
+log.setLevel(process.env.LOG_LEVEL || 'debug')
 
 // Print out the event data
 log.trace(`Event data: ${JSON.stringify(getEventData())}`)
@@ -49,11 +49,7 @@ class SpotifyAction {
     if (!query) {
       throw new Error('invalid search query')
     }
-    
-    console.log(`---- debug query variable ----`)
-    console.log('query', query)
-    console.log(`---- end debug query variable ----`)
-    
+
     return new Promise((resolve, reject) => {
       const options = {
         url: `${this.getEndpoint('searchSong')}?q=${query}%20&type=track&limit=1`,
@@ -123,5 +119,4 @@ const device_id = core.getInput('device_id');
 
 const Spotify = new SpotifyAction({ token, device_id })
 
-console.log(111, search)
 Spotify.searchSong(search).then(song => Spotify.playSong(song, device_id))
