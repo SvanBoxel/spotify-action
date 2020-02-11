@@ -47,9 +47,9 @@ class SpotifyAction {
       throw new Error('invalid search query')
     }
     
-    log.debug(`---- debug query variable ----`)
-    log.debug('query', query)
-    log.debug(`---- end debug query variable ----`)
+    console.log(`---- debug query variable ----`)
+    console.log('query', query)
+    console.log(`---- end debug query variable ----`)
     
     return new Promise((resolve, reject) => {
       const options = {
