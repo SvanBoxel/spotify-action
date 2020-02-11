@@ -2,12 +2,15 @@ name: 'Spotify - Play'
 description: 'Play your favorite Spotify song from within GitHub'
 author: 'Sebass van Boxel'
 inputs:
+  token:
+    description: 'Spotify token: Visit https://developer.spotify.com/console/get-search-item/ and click "Get token"'
+    required: true
   song:
     description: 'Song to search for'
     required: true
     default: ''
   device_id:
-    device_id: 'Spotify device_id (https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/)'
+    description: 'Spotify device_id (https://developer.spotify.com/documentation/web-api/reference/player/get-a-users-available-devices/)'
     required: true
 branding:
   icon: 'play'  
