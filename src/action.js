@@ -19,7 +19,7 @@ log.trace(`Event data: ${JSON.stringify(getEventData())}`)
 const request = require('request')
 
 class SpotifyAction {
-  constructor ({ token }) {
+  constructor ({ token, device_id }) {
     this.endpoints = {
       api_uri: 'https://api.spotify.com/v1',
       searchSong: '/search',
@@ -27,6 +27,7 @@ class SpotifyAction {
     }
 
     this.token = token
+    this.device_id = device_id;
   }
 
   get headers () {
