@@ -117,6 +117,6 @@ const token = process.env.TOKEN
 const search = core.getInput('song');
 const device_id = core.getInput('device_id');
 
-const Spotify = new SpotifyAction({ token, device_id })
+const Spotify = new SpotifyAction({ token })
 
 Spotify.searchSong(search).then(song => Spotify.playSong(song, device_id))
