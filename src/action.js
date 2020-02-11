@@ -1,14 +1,7 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
-
-// Requires and variable definition
 const log = require('loglevel')
 const fs = require('fs')
 
-// Uncomment this if you want to check if your local env variables are being set
-// console.dir(process.env)
-
-// Method that loads the workflow event JSON payload
 let getEventData = function () {
   return JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'))
 }
@@ -113,7 +106,7 @@ class SpotifyAction {
   }
 };
 
-const token = process.env.TOKEN
+const token = core.getInput('token');
 const search = core.getInput('song');
 const device_id = core.getInput('device_id');
 
