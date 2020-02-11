@@ -80,7 +80,7 @@ class SpotifyAction {
 
     return new Promise((resolve, reject) => {
       const options = {
-        url: this.getEndpoint('playSong'),
+        url: `${this.getEndpoint('playSong')}?device_id=${this.device_id}`,
         method: 'PUT',
         headers: this.headers,
         json: {
@@ -110,7 +110,8 @@ class SpotifyAction {
 
 const token = process.env.TOKEN
 const search = process.env.SONG
+const device_id = process.env.DEVICE_ID
 
-const Spotify = new SpotifyAction({ token })
+const Spotify = new SpotifyAction({ token, device_id })
 
 Spotify.searchSong(search).then(song => Spotify.playSong(song))
