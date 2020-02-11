@@ -78,14 +78,14 @@ class SpotifyAction {
     })
   }
 
-  playSong (song) {
+  playSong (song, device_id) {
     if (!song) {
       throw new Error('invalid song')
     }
 
     return new Promise((resolve, reject) => {
       const options = {
-        url: `${this.getEndpoint('playSong')}?device_id=${this.device_id}`,
+        url: `${this.getEndpoint('playSong')}?device_id=${device_id}`,
         method: 'PUT',
         headers: this.headers,
         json: {
@@ -119,4 +119,5 @@ const device_id = process.env.DEVICE_ID
 
 const Spotify = new SpotifyAction({ token, device_id })
 
-Spotify.searchSong(search).then(song => Spotify.playSong(song))
+console.log(111, search)
+Spotify.searchSong(search).then(song => Spotify.playSong(song, device_id))
